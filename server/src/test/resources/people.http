@@ -1,4 +1,4 @@
-### GET request to example server
+### genre request to example server
 GET http://localhost:3000/genre/0 HTTP/1.1
 Accept: application/json
 ###
@@ -12,4 +12,9 @@ POST http://localhost:3000/genre/0/proba HTTP/1.1
 Accept: application/json
 ###
 PUT http://localhost:3000/genre/1/probaActualitza HTTP/1.1
+Accept: application/json
+
+### author request to example server
+
+GET http://localhost:3000/author/0 HTTP/1.1
 Accept: application/json

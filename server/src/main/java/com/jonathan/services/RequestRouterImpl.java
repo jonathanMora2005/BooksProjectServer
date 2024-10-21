@@ -146,18 +146,14 @@ public class RequestRouterImpl implements RequestRouter {
     }
 
     private String manageAuthor(RawHttpRequest request, String method, String[] pathParts, String responseJsonBody) {
-        var controller = controllers.get(pathParts[2]);
-
+        var controller = controllers.get(pathParts[1]);
         if (method.equals("POST")) {
             var authorJson = request.getBody().get().toString();
             controller.post(authorJson);
-
-        } else if (method.equals("GET") && pathParts.length == 2) {
-            responseJsonBody = controller.get();
-
-        }else if (method.equals("GET")) {
+        } else if (method.equals("GET") && Integer.parseInt(pathParts[2]) != 0) {
             responseJsonBody = controller.get(Integer.parseInt(pathParts[2]));
-
+        }else if (method.equals("GET")) {
+            responseJsonBody = controller.get();
         } else if (method.equals("DELETE")) {
             var genreId = Integer.parseInt(pathParts[2]);
             controller.delete(genreId);
