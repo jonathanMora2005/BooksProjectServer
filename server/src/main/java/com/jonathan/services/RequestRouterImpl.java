@@ -195,7 +195,7 @@ public class RequestRouterImpl implements RequestRouter {
             var genreId = Integer.parseInt(pathParts[2]);
             var mapper = new ObjectMapper();
 
-            var ggenreJson = request.getBody().get().toString();
+            var ggenreJson = pathParts[3];
             controller.put(genreId, ggenreJson);
 
         }
