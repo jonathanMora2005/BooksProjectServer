@@ -12,18 +12,22 @@ import java.util.HashMap;
 
 public class App {
     public static void main(String[] args) throws IOException, SQLException {
+
         JdbcRepositoryFactory modelFactory = new JdbcRepositoryFactory();
+
         JdbcModelFactory repositoryFactory = new JdbcModelFactory();
 
         var controlers = new HashMap<String, Controller>();
-        controlers.put("genres",new GenreControler(modelFactory,repositoryFactory));
+        controlers.put("genre",new GenreControler(modelFactory,repositoryFactory));
         controlers.put("author",new AuthorControler(modelFactory,repositoryFactory));
         controlers.put("personalInformation",new PersonalInformationControler(modelFactory,repositoryFactory));
         controlers.put("publishing",new PublishingControler(modelFactory,repositoryFactory));
         controlers.put("readBook",new ReadBookControler(modelFactory,repositoryFactory));
         controlers.put("peandingBook",new PeandingBookControler(modelFactory,repositoryFactory));
+
         var requestRouter = new RequestRouterImpl(controlers);
-            new Server(requestRouter).start();
+
+        new Server(requestRouter).start();
 
     }
 }

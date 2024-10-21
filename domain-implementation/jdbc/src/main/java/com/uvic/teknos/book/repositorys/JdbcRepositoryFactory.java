@@ -13,9 +13,26 @@ public class JdbcRepositoryFactory implements RepositoryFactory {
     private Connection connection ;
 
     public JdbcRepositoryFactory() throws SQLException {
-        var properties = new Properties();
+        // JDBC URL, username and password for the MySQL database
+        String url = "jdbc:mysql://localhost:3306/my_book_list";
+        String user = "root";  // replace with your MySQL username
+        String password = "";  // replace with your MySQL password
         try {
-            properties.load(this.getClass().getResourceAsStream("/datasource.properties"));
+            // Establishing the connection
+
+             connection = DriverManager.getConnection(url, user, password);
+            System.out.println("Connection successful!");
+
+            // You can now interact with the database (execute queries, etc.)
+
+        } catch (SQLException e) {
+            // Handling SQL errors
+
+            e.printStackTrace();
+        }
+       /* var properties = new Properties();
+        try {
+            properties.load(this.getClass().getResourceAsStream("datasource.properties"));
             connection = DriverManager.getConnection(String.format("%s:%s://%s/%s",
                     properties.getProperty("protocol"),
                     properties.getProperty("subprotocol"),
@@ -23,7 +40,7 @@ public class JdbcRepositoryFactory implements RepositoryFactory {
                     properties.getProperty("database")), properties.getProperty("user"), properties.getProperty("password"));
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
+        }*/
     }
 
     @Override

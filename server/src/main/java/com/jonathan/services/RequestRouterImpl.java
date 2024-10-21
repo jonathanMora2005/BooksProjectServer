@@ -32,7 +32,7 @@ public class RequestRouterImpl implements RequestRouter {
         var pathParts = path.split("/");
         var controllerName = pathParts[1];
         var responseJsonBody = "";
-
+        System.out.println("execRequest");
         switch (controllerName) {
             case "genre":
                 responseJsonBody = manageGenre(request, method, pathParts, responseJsonBody);
@@ -61,11 +61,12 @@ public class RequestRouterImpl implements RequestRouter {
                     "Content-Length: " + responseJsonBody.length() + "\r\n" +
                     "\r\n" +
                     responseJsonBody);
+            System.out.println(response);
         } catch (Exception exception) {
             response = null;
         }
 
-        return null;
+        return response;
     }
 
     private String managePeandingBook(RawHttpRequest request, String method, String[] pathParts, String responseJsonBody) {
@@ -74,11 +75,12 @@ public class RequestRouterImpl implements RequestRouter {
             var publishingJson = request.getBody().get().toString();
             controller.post(publishingJson);
 
-        } else if (method.equals("GET") && pathParts.length == 2) {
-            responseJsonBody = controller.get();
+        } else if (method.equals("GET") && pathParts.length >= 2) {
+            responseJsonBody = controller.get(Integer.parseInt(pathParts[2]));
+
 
         }else if (method.equals("GET")) {
-            responseJsonBody = controller.get(Integer.parseInt(pathParts[2]));
+            responseJsonBody = controller.get();
 
         } else if (method.equals("DELETE")) {
             var publishingId = Integer.parseInt(pathParts[2]);
@@ -127,7 +129,9 @@ public class RequestRouterImpl implements RequestRouter {
             responseJsonBody = controller.get();
 
         }else if (method.equals("GET")) {
-            responseJsonBody = controller.get(Integer.parseInt(pathParts[2]));
+            responseJsonBody = controller.get();
+
+           // responseJsonBody = controller.get(Integer.parseInt(pathParts[2]));
 
         } else if (method.equals("DELETE")) {
             var publishingId = Integer.parseInt(pathParts[2]);
@@ -142,7 +146,7 @@ public class RequestRouterImpl implements RequestRouter {
     }
 
     private String manageAuthor(RawHttpRequest request, String method, String[] pathParts, String responseJsonBody) {
-        var controller = controllers.get(pathParts[1]);
+        var controller = controllers.get(pathParts[2]);
 
         if (method.equals("POST")) {
             var authorJson = request.getBody().get().toString();
@@ -178,8 +182,11 @@ public class RequestRouterImpl implements RequestRouter {
         } else if (method.equals("GET") && pathParts.length == 2) {
             responseJsonBody = controller.get();
 
-        }else if (method.equals("GET")) {
-            responseJsonBody = controller.get(Integer.parseInt(pathParts[2]));
+        }else if (true) {
+            //method.equals("GET")
+            responseJsonBody = controller.get(Integer.parseInt(pathParts[3]));
+
+            //responseJsonBody = controller.get(Integer.parseInt(pathParts[2]));
 
         } else if (method.equals("DELETE")) {
             var genreId = Integer.parseInt(pathParts[2]);

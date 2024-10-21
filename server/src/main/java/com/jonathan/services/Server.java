@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 
 public class Server {
-    public static  final int PORT = 80;
+    public static  final int PORT = 3000;
     private boolean SHUTDOWN_SERVER;
     private  RequestRouterImpl router;
 
@@ -22,7 +22,6 @@ public class Server {
                 try (var clientSocket = serverSocket.accept()) {
                     var rawHttp = new RawHttp(RawHttpOptions.newBuilder().doNotInsertHostHeaderIfMissing().build());
                     var request = rawHttp.parseRequest(clientSocket.getInputStream());
-
                     var response = router.execRequest(request);
 
                     response.writeTo(clientSocket.getOutputStream());
