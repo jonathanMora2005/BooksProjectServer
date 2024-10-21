@@ -1,4 +1,6 @@
 ### GET request to example server
-GET http://localhost:3000/genre/GET/2 HTTP/1.1
+GET http://localhost:3000/genre/0 HTTP/1.1
 Accept: application/json
 ###
+GET http://localhost:3000/genre/2 HTTP/1.1
+Accept: application/json

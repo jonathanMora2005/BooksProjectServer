@@ -179,14 +179,14 @@ public class RequestRouterImpl implements RequestRouter {
             var genreJson = request.getBody().get().toString();
             controller.post(genreJson);
 
-        } else if (method.equals("GET") && pathParts.length == 2) {
+        } else if (method.equals("GET") && Integer.parseInt(pathParts[2]) != 0) {
+            responseJsonBody = controller.get(Integer.parseInt(pathParts[2]));
+
+
+        }else if (method.equals("GET")) {
             responseJsonBody = controller.get();
 
-        }else if (true) {
-            //method.equals("GET")
-            responseJsonBody = controller.get(Integer.parseInt(pathParts[3]));
 
-            //responseJsonBody = controller.get(Integer.parseInt(pathParts[2]));
 
         } else if (method.equals("DELETE")) {
             var genreId = Integer.parseInt(pathParts[2]);

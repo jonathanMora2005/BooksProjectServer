@@ -33,25 +33,7 @@ public class GenreControler implements Controller{
         return jsonBuilder.toString();
     }
 
-    public AuthorRepository getAuthorRepository() {
-        return repositoryFactory.getAuthorRepository();
-    }
 
-    public GenreRepository getGenreRepository() {
-        return repositoryFactory.getGenreRepository();
-    }
-
-    public BookreadRepository getReadRepositori() {
-        return repositoryFactory.getReadRepositori();
-    }
-
-    public PublishingRepository getPublishingRepository() {
-        return repositoryFactory.getPublishingRepository();
-    }
-
-    public PersonalinformationRepository getPersonalInformationRepository() {
-        return repositoryFactory.getPersonalInformationRepository();
-    }
 
     @Override
     public String get() {
