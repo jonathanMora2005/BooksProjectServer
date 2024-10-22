@@ -149,7 +149,7 @@ public class RequestRouterImpl implements RequestRouter {
         var controller = controllers.get(pathParts[1]);
         if (method.equals("POST")) {
             var authorJson = request.getBody().get().toString();
-            var strigAuthorJson = pathParts[3]+"."+pathParts[4];
+            var strigAuthorJson = pathParts[3]+"/"+pathParts[4];
             controller.post(strigAuthorJson);
         } else if (method.equals("GET") && Integer.parseInt(pathParts[2]) != 0) {
             responseJsonBody = controller.get(Integer.parseInt(pathParts[2]));
@@ -162,7 +162,7 @@ public class RequestRouterImpl implements RequestRouter {
             var authorId = Integer.parseInt(pathParts[2]);
             var mapper = new ObjectMapper();
 
-            var authorJson = request.getBody().get().toString();
+            var authorJson = pathParts[3]+"/"+pathParts[4];
             controller.put(authorId, authorJson);
 
         }
