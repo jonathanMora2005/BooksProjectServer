@@ -59,8 +59,9 @@ public class AuthorControler implements Controller{
     public void post(String value) {
         Author author =new com.uvic.teknos.book.models.Author();
         author.setId(0);
-        author.setnom(value.split(".")[0]);
-        author.setsurname(value.split(".")[1]);
+        var a = value.split(".");
+        author.setnom(a[0]);
+        author.setsurname(a[1]);
         repositoryFactory.getAuthorRepository().save(author);
     }
 

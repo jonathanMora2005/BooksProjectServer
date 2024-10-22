@@ -149,7 +149,8 @@ public class RequestRouterImpl implements RequestRouter {
         var controller = controllers.get(pathParts[1]);
         if (method.equals("POST")) {
             var authorJson = request.getBody().get().toString();
-            controller.post(authorJson);
+            var strigAuthorJson = pathParts[3]+"."+pathParts[4];
+            controller.post(strigAuthorJson);
         } else if (method.equals("GET") && Integer.parseInt(pathParts[2]) != 0) {
             responseJsonBody = controller.get(Integer.parseInt(pathParts[2]));
         }else if (method.equals("GET")) {
