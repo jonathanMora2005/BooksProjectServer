@@ -27,6 +27,26 @@ Accept: application/json
 POST http://localhost:3000/author/0/probaName/ProbaSurname HTTP/1.1
 Accept: application/json
 ###
-
 PUT http://localhost:3000/author/1/probaActualitza/probaActualitza HTTP/1.1
 Accept: application/json
+
+### publishing request to example server
+GET http://localhost:3000/publishing/0 HTTP/1.1
+Accept: application/json
+
+###
+GET http://localhost:3000/publishing/2 HTTP/1.1
+Accept: application/json
+
+###
+POST http://localhost:3000/publishing/0/probaName/ProbaCountry/ProbaEmail HTTP/1.1
+Accept: application/json
+###
+DELETE http://localhost:3000/publishing/3 HTTP/1.1
+Accept: application/json
+###
+PUT http://localhost:3000/publishing/1/probaName/ProbaCountry/ProbaEmail HTTP/1.1
+Accept: application/json
+
+### readBook request to example server
+

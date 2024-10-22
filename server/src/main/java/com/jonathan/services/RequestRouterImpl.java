@@ -122,16 +122,15 @@ public class RequestRouterImpl implements RequestRouter {
         var controller = controllers.get(pathParts[1]);
 
         if (method.equals("POST")) {
-            var publishingJson = request.getBody().get().toString();
+            var publishingJson = pathParts[3]+"/"+pathParts[4]+"/"+pathParts[5];
             controller.post(publishingJson);
 
-        } else if (method.equals("GET") && pathParts.length == 2) {
+        } else if (method.equals("GET") && Integer.parseInt(pathParts[2]) == 0) {
             responseJsonBody = controller.get();
 
         }else if (method.equals("GET")) {
-            responseJsonBody = controller.get();
 
-           // responseJsonBody = controller.get(Integer.parseInt(pathParts[2]));
+           responseJsonBody = controller.get(Integer.parseInt(pathParts[2]));
 
         } else if (method.equals("DELETE")) {
             var publishingId = Integer.parseInt(pathParts[2]);
@@ -139,8 +138,8 @@ public class RequestRouterImpl implements RequestRouter {
         } else if (method.equals("PUT")) {
             var publishingId = Integer.parseInt(pathParts[2]);
             var mapper = new ObjectMapper();
-            var authorJson = request.getBody().get().toString();
-            controller.put(publishingId, authorJson);
+            var publishingJson = pathParts[3]+"/"+pathParts[4]+"/"+pathParts[5];
+            controller.put(publishingId, publishingJson);
         }
         return responseJsonBody;
     }
